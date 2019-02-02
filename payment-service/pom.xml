@@ -6,7 +6,7 @@
         <groupId>com.invillia.acme</groupId>
         <artifactId>invillia</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/>
+        <relativePath>../</relativePath>
     </parent>
 
     <groupId>com.invillia.acme</groupId>
@@ -84,7 +84,7 @@
                     <repository>invilla/order-service</repository>
                     <tag>latest</tag>
                     <buildArgs>
-                        <JAR_FILE>target/order-service-${project.version}.jar</JAR_FILE>
+                        <JAR_FILE>target/payment-service-${project.version}.jar</JAR_FILE>
                     </buildArgs>
                     <skip>${docker.skip}</skip>
                 </configuration>
