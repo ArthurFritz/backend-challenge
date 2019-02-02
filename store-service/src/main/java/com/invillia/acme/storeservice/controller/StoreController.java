@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("/store")
 public class StoreController {
 
     private final StoreService storeService;

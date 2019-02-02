@@ -41,8 +41,8 @@ public class StoreControllerTest {
 
     protected MockMvc mvc;
 
-    private String uri = "/";
-    private String uriUpdate = "/identifier";
+    private String uri = "/store";
+    private String uriUpdate = "/store/identifier";
 
     @Autowired
     WebApplicationContext webApplicationContext;
