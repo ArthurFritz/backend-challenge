@@ -29,6 +29,7 @@
         <module>order-service</module>
         <module>payment-service</module>
         <module>store-service</module>
+        <module>documentation-service</module>
     </modules>
 
 
