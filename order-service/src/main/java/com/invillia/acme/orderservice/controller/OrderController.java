@@ -24,6 +24,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderDTO> newOrder(@RequestBody @Valid OrderDTO dto) {
+        dto.setStatusOrder(StatusOrder.NEW);
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createNewOrder(dto));
     }
 

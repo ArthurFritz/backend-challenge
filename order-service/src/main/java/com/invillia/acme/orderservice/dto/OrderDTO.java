@@ -28,7 +28,6 @@ public class OrderDTO {
     @NotEmpty
     private String address;
 
-    @NotNull
     private StatusOrder statusOrder;
 
     @Valid

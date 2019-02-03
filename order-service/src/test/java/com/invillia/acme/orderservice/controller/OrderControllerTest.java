@@ -60,7 +60,6 @@ public class OrderControllerTest {
     public void should_createOrder() throws Exception {
         String inputJson = "{ " +
         "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-        "        \"statusOrder\":\"NEW\", " +
         "        \"address\":\"endereço\", " +
         "        \"items\": [ " +
         "{ " +
@@ -79,7 +78,6 @@ public class OrderControllerTest {
     @Test
     public void should_createOrderInvalidConfimationDate() throws Exception {
         String inputJson = "{ " +
-                "        \"statusOrder\":\"NEW\", " +
                 "        \"address\":\"endereço\", " +
                 "        \"items\": [ " +
                 "{ " +
@@ -95,30 +93,11 @@ public class OrderControllerTest {
         assertEquals(400, status);
     }
 
-    @Test
-    public void should_createOrderInvalidStatusOrder() throws Exception {
-        String inputJson = "{ " +
-                "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-                "        \"address\":\"endereço\", " +
-                "        \"items\": [ " +
-                "{ " +
-                "    \"quantity\":12, " +
-                "        \"description\":\"product\", " +
-                "        \"unitPrice\":0.50 " +
-                "}" +
-                "]}";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        assertEquals(400, status);
-    }
 
     @Test
     public void should_createOrderInvalidAddress() throws Exception {
         String inputJson = "{ " +
                 "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-                "        \"statusOrder\":\"NEW\", " +
                 "        \"items\": [ " +
                 "{ " +
                 "    \"quantity\":12, " +
@@ -137,7 +116,6 @@ public class OrderControllerTest {
     public void should_createOrderInvalidQuantity() throws Exception {
         String inputJson = "{ " +
                 "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-                "        \"statusOrder\":\"NEW\", " +
                 "        \"address\":\"endereço\", " +
                 "        \"items\": [ " +
                 "{ " +
@@ -156,7 +134,6 @@ public class OrderControllerTest {
     public void should_createOrderInvalidDescriptionItem() throws Exception {
         String inputJson = "{ " +
                 "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-                "        \"statusOrder\":\"NEW\", " +
                 "        \"address\":\"endereço\", " +
                 "        \"items\": [ " +
                 "{ " +
@@ -175,7 +152,6 @@ public class OrderControllerTest {
     public void should_createOrderInvalidUnitPrice() throws Exception {
         String inputJson = "{ " +
                 "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-                "        \"statusOrder\":\"NEW\", " +
                 "        \"address\":\"endereço\", " +
                 "        \"items\": [ " +
                 "{ " +
@@ -194,7 +170,6 @@ public class OrderControllerTest {
     public void should_createOrderNoItems() throws Exception {
         String inputJson = "{ " +
                 "        \"confirmationDate\":\"2016-01-25T21:34:55\", " +
-                "        \"statusOrder\":\"NEW\", " +
                 "        \"address\":\"endereço\", " +
                 "        \"items\": [ ]}";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
