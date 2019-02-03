@@ -11,7 +11,7 @@ public class ExpiredDaysOrderTest {
     public void ExpiredDays() {
         LocalDateTime now = LocalDateTime.now();
         ExpiredDaysOrder expiredDaysOrder = new ExpiredDaysOrder(now);
-        Assert.assertEquals("This confirmation in the " + expiredDaysOrder + " not allow refund", expiredDaysOrder.getMessage());
+        Assert.assertEquals("This confirmation in the " + now + " not allow refund", expiredDaysOrder.getMessage());
     }
 
 }
