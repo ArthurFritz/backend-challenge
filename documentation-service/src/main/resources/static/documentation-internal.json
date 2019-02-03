@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This documentation about internal apis into Service Order",
+    "version": "1.0.0",
+    "title": "Challenge Invillia",
+    "termsOfService": "https://github.com/arthurfritz/backend-challenge",
+    "contact": {
+      "email": "arthurfritzz@gmail.com"
+    }
+  },
+  "basePath": "/api/v1/internal",
+  "tags": [
+    {
+      "name": "Order",
+      "description": "Operations internal about Order Service"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/update/{orderId}/{statusOrder}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Update status this order",
+        "description": "",
+        "operationId": "updateOrder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "description": "Identifier to order",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "statusOrder",
+            "description": "New status this order",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/resume/{orderId}": {
+        "get": {
+            "tags": [
+              "Order"
+            ],
+            "summary": "Get resume from order",
+            "description": "",
+            "operationId": "resumeOrder",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in":"path",
+                "name":"orderId",
+                "required": true,
+                "type":"string"
+              }
+            ],
+            "responses": {
+              "400": {
+                "description": "Invalid request"
+              },
+              "404": {
+                "description": "Order not found"
+              },
+              "200": {
+                "description": "Successful operation",
+                "schema": {
+                    "$ref": "#/definitions/resumeOrder"
+                }
+              }
+            }
+        }
+    }
+  },
+  "definitions": {
+    "resumeOrder": {
+        "type": "object",
+        "required": [
+        "confirmationDate",
+        "totalValue"
+        ],
+        "properties": {
+            "confirmationDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2016-01-25T21:34:55"
+            },
+            "totalValue": {
+                "type": "number",
+                "example": 15.21
+            }
+        }
+    }
+  }
+}

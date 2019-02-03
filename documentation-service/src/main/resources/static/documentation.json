@@ -1,0 +1,508 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This documentation about Invillia Challenge API's",
+    "version": "1.0.0",
+    "title": "Challenge Invillia",
+    "termsOfService": "https://github.com/arthurfritz/backend-challenge",
+    "contact": {
+      "email": "arthurfritzz@gmail.com"
+    }
+  },
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Store",
+      "description": "Operations about Store"
+    },
+    {
+      "name": "Order",
+      "description": "Operations about order"
+    },
+    {
+        "name": "Payment",
+        "description": "Operations about payment"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/store": {
+      "post": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Add a new store",
+        "description": "",
+        "operationId": "addStore",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Store object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Store"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "schema": {
+                "$ref": "#/definitions/StoreResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "Finds Store",
+        "description": "Find Store per name and/or address",
+        "operationId": "findStores",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name this filter stores",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Address this filter stores",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StoreResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/store/{identifier}": {
+        "put": {
+            "tags": [
+              "Store"
+            ],
+            "summary": "Update an existing Store",
+            "description": "",
+            "operationId": "updateStore",
+            "consumes": [
+              "application/json"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "in":"path",
+                "name":"identifier",
+                "required": true,
+                "type":"string"
+              },
+              {
+                "in": "body",
+                "name": "body",
+                "description": "Store object that needs to be update",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/Store"
+                }
+              }
+            ],
+            "responses": {
+              "400": {
+                "description": "Invalid request"
+              },
+              "404": {
+                "description": "Store not found"
+              },
+              "200": {
+                "description": "Successful operation",
+                "schema": {
+                    "$ref": "#/definitions/StoreResponse"
+                }
+              }
+            }
+        }
+    },
+    "/order": {
+        "post": {
+          "tags": [
+            "Order"
+          ],
+          "summary": "Add a new order",
+          "description": "",
+          "operationId": "addOrder",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Order object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Order"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Successful operation",
+              "schema": {
+                  "$ref": "#/definitions/OrderResponse"
+              }
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Order"
+          ],
+          "summary": "Finds Order",
+          "description": "Find Order per name and/or address",
+          "operationId": "findOrders",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "status",
+              "in": "query",
+              "description": "StatusOrder this filter orders",
+              "required": false,
+              "type": "string",
+              "enum" : ["NEW","PROCESSING","COMPLETED","REFUND"]
+            },
+            {
+              "name": "address",
+              "in": "query",
+              "description": "Address this filter orders",
+              "required": false,
+              "type": "string"
+            },
+            {
+                "name": "confirmationDate",
+                "in": "query",
+                "description": "Confirmation Date this filter orders",
+                "required": false,
+                "type": "string",
+                "format": "date-time"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/OrderResponse"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          }
+        }
+    },
+    "/payment": {
+        "post": {
+          "tags": [
+            "Payment"
+          ],
+          "summary": "Add a new payment to order",
+          "description": "",
+          "operationId": "addPayment",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Payment object this pay this order",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Successful operation",
+              "schema": {
+                  "$ref": "#/definitions/PaymentResponse"
+              }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "404": {
+              "description": "Not found order to pay"
+            }
+          }
+        }
+    },
+    "/payment/refund": {
+        "post": {
+          "tags": [
+            "Payment"
+          ],
+          "summary": "Add a new refund for payment to order",
+          "description": "",
+          "operationId": "addRefund",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Refund object this refund payment",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Refund"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                  "$ref": "#/definitions/Refund"
+              }
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "404": {
+              "description": "Not found order or payment"
+            }
+          }
+        }
+    }
+  },
+  "definitions": {
+    "Store": {
+        "type": "object",
+        "required": [
+            "name",
+            "address"
+        ],
+        "properties": {
+            "name": {
+            "type": "string",
+            "example": "MyStore"
+            },
+            "address": {
+            "type": "string",
+            "example": "MyAddress"
+            }
+        }
+    },
+    "StoreResponse": {
+        "type": "object",
+        "required": [
+        "id",
+        "name",
+        "address"
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "example": "idStore"
+            },
+            "name": {
+                "type": "string",
+                "example": "MyStore"
+            },
+            "address": {
+                "type": "string",
+                "example": "MyAddress"
+            }
+        }
+    },
+    "OrderItem": {
+        "type": "object",
+        "required": [
+        "quantity",
+        "description",
+        "unitPrice"
+        ],
+        "properties": {
+            "description": {
+                "type": "string",
+                "example": "My item"
+            },
+            "quantity": {
+                "type": "integer",
+                "example": 4
+            },
+            "unitPrice": {
+                "type": "number",
+                "example": 12.50
+            }
+        }
+    },
+    "Order": {
+        "type": "object",
+        "required": [
+        "confirmationDate",
+        "address",
+        "items"
+        ],
+        "properties": {
+            "confirmationDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2016-01-25T21:34:55"
+            },
+            "address": {
+                "type": "string",
+                "example": "MyAddress"
+            },
+            "items" : {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/OrderItem"
+                }
+            }
+        }
+    },
+    "OrderResponse": {
+        "type": "object",
+        "required": [
+        "id",
+        "confirmationDate",
+        "address",
+        "items"
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "example": "idOrder"
+            },
+            "confirmationDate": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2016-01-25T21:34:55"
+            },
+            "address": {
+                "type": "string",
+                "example": "MyAddress"
+            },
+            "items" : {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/OrderItem"
+                }
+            }
+        }
+    },
+    "Payment": {
+        "type": "object",
+        "required": [
+        "creditCardNumber",
+        "order"
+        ],
+        "properties": {
+            "creditCardNumber": {
+                "type": "string",
+                "example": "6543 6654 654"
+            },
+            "order": {
+                "type": "string",
+                "example": "identifierOrder"
+            }
+        }
+    },
+    "PaymentResponse": {
+        "type": "object",
+        "required": [
+        "id",
+        "creditCardNumber",
+        "order"
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "example": "idPayment"
+            },
+            "creditCardNumber": {
+                "type": "string",
+                "example": "6543 6654 654"
+            },
+            "order": {
+                "type": "string",
+                "example": "identifierOrder"
+            }
+        }
+    },
+    "Refund": {
+        "type": "object",
+        "required": [
+        "payment",
+        "order",
+        "valueRefund"
+        ],
+        "properties": {
+            "payment": {
+                "type": "string",
+                "example": "idPayment"
+            },
+            "order": {
+                "type": "string",
+                "example": "idOrder"
+            },
+            "valueRefund": {
+                "type": "number",
+                "example": 45.21
+            }
+        }
+    }
+  }
+}
