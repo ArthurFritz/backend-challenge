@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "31fc79f8-44ed-4770-ba52-b9ce1f8948a3",
+		"name": "Invillia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Get Store",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8383/api/v1/store?name=my order - &address=my",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8383",
+							"path": [
+								"api",
+								"v1",
+								"store"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "my order - "
+								},
+								{
+									"key": "address",
+									"value": "my"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"my order\",\n\t\"address\":\"my address\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8383/api/v1/store/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8383",
+							"path": [
+								"api",
+								"v1",
+								"store",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"id\": \"5c55b3a9bfe7710d086062e0\",\n    \"name\": \"my order - alter\",\n    \"address\": \"my address\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8383/api/v1/store/5c55b3a9bfe7710d086062e01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8383",
+							"path": [
+								"api",
+								"v1",
+								"store",
+								"5c55b3a9bfe7710d086062e01"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "List Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8181/api/v1/order?address=ende",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"api",
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "address",
+									"value": "ende"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"confirmationDate\":\"2016-01-25T21:34:55\",\n\t\"address\":\"endereço\",\n\t\"items\": [\n\t\t{\n\t\t\t\"quantity\":12,\n\t\t\t\"description\":\"product\",\n\t\t\t\"unitPrice\":0.50\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "localhost:8181/api/v1/order",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"api",
+								"v1",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Internal Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8181/api/v1/internal/update/5c55df2ebfe7714b1a8beacd/NEW",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"api",
+								"v1",
+								"internal",
+								"update",
+								"5c55df2ebfe7714b1a8beacd",
+								"NEW"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Internal Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8181/api/v1/internal/resume/5c55df2ebfe7714b1a8beacd",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"api",
+								"v1",
+								"internal",
+								"resume",
+								"5c55df2ebfe7714b1a8beacd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Pay",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"creditCardNumber\":\"654987 321654\",\n\t\"order\":\"5c55df2ebfe7714b1a8beacd\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8282/api/v1/payment",
+							"host": [
+								"localhost"
+							],
+							"port": "8282",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refund",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"payment\" : \"5c573e7647114f7f1f0933fe\",\n\t\"order\" : \"5c55df2ebfe7714b1a8beacd\",\n\t\"valueRefund\" : \"1\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8282/api/v1/payment/refund",
+							"host": [
+								"localhost"
+							],
+							"port": "8282",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
