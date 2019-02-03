@@ -20,4 +20,7 @@ public class OrderItem {
     @NonNull
     private BigDecimal unitPrice;
 
+    public BigDecimal totalValue(){
+        return unitPrice.multiply(BigDecimal.valueOf(quantity));
+    }
 }

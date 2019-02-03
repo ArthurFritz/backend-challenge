@@ -33,7 +33,7 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = OrderServiceApplication.class)
+@SpringBootTest
 @WebAppConfiguration
 public class OrderControllerTest {
 
